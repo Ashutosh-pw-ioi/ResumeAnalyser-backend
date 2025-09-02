@@ -1,16 +1,11 @@
-# Builder stage
-FROM python:3.11-slim 
+# Use the official uv base image
+FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim
 
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && rm -rf /var/lib/apt/lists/*
-
-ENV PATH="/root/.local/bin:${PATH}"
 WORKDIR /app
 
 COPY pyproject.toml uv.lock* ./
 
-RUN uv venv --seed \
-    && uv sync --no-cache
+RUN uv sync --no-cache
 
 COPY . .
 
@@ -18,4 +13,5 @@ COPY . .
 ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8000
+
 CMD ["python", "src/main.py"]
