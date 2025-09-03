@@ -1,4 +1,3 @@
-from groq import Groq
 from features.resume.config import ResumeAnalyzerConfig
 import logging
 from typing import Optional, Dict
@@ -8,23 +7,22 @@ logger = logging.getLogger(__name__)
 
 class ResumeDetailsExtractor:
     def __init__(self, logger:logging.Logger):
-        self.groq_client = self._initialize_groq_client()
         self.model = ResumeAnalyzerConfig.MODEL 
         
-    def _initialize_groq_client(self) -> Optional[Groq]:
-        """
-        Initialize Groq client for AI analysis
+    # def _initialize_groq_client(self) -> Optional[Groq]:
+    #     """
+    #     Initialize Groq client for AI analysis
         
-        Returns:
-            Optional[Groq]: Groq client instance or None if initialization fails
-        """
-        try:
-            client = Groq(api_key=ResumeAnalyzerConfig.GROQ_API_KEY)
-            logger.info("Groq client initialized successfully")
-            return client
-        except Exception as e:
-            logger.error(f"Error initializing Groq client: {e}")
-            return None
+    #     Returns:
+    #         Optional[Groq]: Groq client instance or None if initialization fails
+    #     """
+    #     try:
+    #         client = Groq(api_key=ResumeAnalyzerConfig.GROQ_API_KEY)
+    #         logger.info("Groq client initialized successfully")
+    #         return client
+    #     except Exception as e:
+    #         logger.error(f"Error initializing Groq client: {e}")
+    #         return None
 
     @staticmethod
     def extract_json_from_response(response_text):

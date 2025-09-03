@@ -1,9 +1,7 @@
 import  pytesseract
 import logging
 from docx import Document
-from pdf2image import convert_from_path
 from features.resume.config import ResumeAnalyzerConfig
-from transformers import pipeline
 import fitz
 from PIL import Image
 import PyPDF2, io, cv2

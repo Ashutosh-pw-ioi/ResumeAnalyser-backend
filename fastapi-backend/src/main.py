@@ -51,7 +51,7 @@ async def health_check():
 
 def main():    
     logger.info(f"Environment variables loaded successfully, test env: {os.getenv('TEST')}")
-    uvicorn.run("main:app")
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
     
 
 if __name__ == "__main__":
