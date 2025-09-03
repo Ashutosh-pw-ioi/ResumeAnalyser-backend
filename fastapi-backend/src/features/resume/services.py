@@ -1,7 +1,7 @@
 import logging, json
 from fastapi import HTTPException, BackgroundTasks, status
 from features.resume.utils.utils import (
-    AIAnalyzer, TextExtractor, NLPAnalyzer, PersonalInfoExtractor,
+    AIAnalyzer, TextExtractor,
     SectionExtractor, SkillsAnalyzer, JobMatchCalculator, ResponseFormatter, ResumeDetailsExtractor
 )
 from features.resume.repository import resume_repository
@@ -31,8 +31,6 @@ class ResumeAnalyzer:
         
         # Initialize all components
         self.text_extractor = TextExtractor(logger)
-        self.nlp_analyzer = NLPAnalyzer(logger)
-        self.personal_info_extractor = PersonalInfoExtractor(self.nlp_analyzer, logger)
         self.section_extractor = SectionExtractor(logger)
         self.skills_analyzer = SkillsAnalyzer(logger)
         self.job_match_calculator = JobMatchCalculator(logger)
@@ -116,9 +114,7 @@ class ResumeAnalyzer:
             overall_resume_analysis.pop("matched_skills", [])
             overall_resume_analysis.pop("missing_skills", [])
             
-            # print once
-            print(f"Matched skills -> {matched_skills}")
-            print(f"Missing skills -> {missing_skills}")
+            # print once=
             ats_score = self.ai_analyzer.compute_resume_score(
                 resume_text, target_role, job_description
             )

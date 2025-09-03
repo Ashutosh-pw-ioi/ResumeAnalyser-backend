@@ -1,5 +1,3 @@
-from features.resume.utils.nlp_analyzer import NLPAnalyzer
-from features.resume.utils.personal_info_extractor import PersonalInfoExtractor
 from features.resume.utils.text_extractor import TextExtractor
 from features.resume.utils.section_extractor import SectionExtractor
 from features.resume.utils.skills_analyzer import SkillsAnalyzer
