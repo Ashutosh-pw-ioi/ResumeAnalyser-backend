@@ -19,6 +19,10 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 
+app.get("/", (req, res) => {
+  res.status(200).json({success: true, message: "Server running!!!"})
+});
+
 app.listen(PORT, async () => {
   console.log(`Server started on port ${PORT}`);
 });
