@@ -3,7 +3,7 @@ import logging
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from database import connect_to_mongo, close_mongo_connection
-
+from config import settings
 logger = logging.getLogger(__name__)
 
 def create_server():
@@ -29,7 +29,7 @@ def create_server():
         # Add CORS middleware
         app.add_middleware(
             CORSMiddleware,
-            allow_origins=["*"],  # Configure appropriately for production
+            allow_origins=[settings.frontend_url],  # Configure appropriately for production
             allow_credentials=True,
             allow_methods=["*"],
             allow_headers=["*"],
