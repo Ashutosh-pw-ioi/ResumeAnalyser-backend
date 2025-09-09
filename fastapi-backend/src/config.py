@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     jwt_secret: str
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 120
+    frontend_url: str
     
     class Config:
         env_file = "../.env"
