@@ -5,7 +5,7 @@ from features.resume.utils.utils import (
     SectionExtractor, SkillsAnalyzer, JobMatchCalculator, ResponseFormatter, ResumeDetailsExtractor
 )
 from features.resume.repository import resume_repository
-
+from pathlib import Path
 from typing import Any, Dict, Optional, List, Tuple
 from datetime import datetime
 # from features.resume.schemas import (
@@ -127,7 +127,7 @@ class ResumeAnalyzer:
             
             # Step 9: Update database in background
             resume_metadata = {
-                "resume_name": file_path.split(".")[0].split("\\")[1],
+                "resume_name": Path(file_path).stem,
                 "is_primary": True,
             }
             
@@ -512,7 +512,7 @@ class ResumeAnalyzer:
             resume_details["ats_score"] = float(ats_score)
             
             resume_metadata =  {
-                "resume_name": file_path.split(".")[0].split("\\")[1],
+                "resume_name": Path(file_path).stem,
                 "is_primary": True
             }
             
