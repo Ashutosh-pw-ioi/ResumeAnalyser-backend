@@ -532,10 +532,10 @@ class ResumeRepository:
             )
             
             if not latest_analysis:
-                raise HTTPException(
-                    status_code=status.HTTP_404_NOT_FOUND,
-                    detail="No latest resume analysis found for user"
-                )
+                return {
+                    "success": True,
+                    "resume_analysis": []
+                }
             resume_id = latest_analysis.resume_id
             
             # find resume and give resume metadata
